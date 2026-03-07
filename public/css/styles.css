@@ -4,3 +4,272 @@
 *:after {
   box-sizing: border-box;
 }
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #222222;
+  --color-header-text: #000000;
+  --color-nav-bg: #333344;
+  --color-nav-text: #ffffff;
+  --color-primary: #00bfe6;
+  --color-primary-dark: #0088aa;
+  --color-border: #27c7ff;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+#wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 960px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+main {
+  width: 100%;
+  padding: 1.5rem 1.25rem 2rem;
+}
+
+/* Header */
+
+#top-header {
+  width: 100%;
+  margin: 0;
+  padding: 1rem 1.25rem 0.25rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.siteName a {
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--color-header-text);
+}
+
+#tools a {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary-dark);
+}
+
+/* Navigation */
+
+nav {
+  background-color: var(--color-nav-bg);
+}
+
+nav ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0.35rem 0.5rem;
+  max-width: 960px;
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+}
+
+nav li {
+  flex: 1 1 0;
+  text-align: center;
+  color: var(--color-nav-text);
+  padding: 0.45rem 0.25rem;
+  font-size: 0.9rem;
+}
+
+/* Hero section */
+
+.hero {
+  position: relative;
+}
+
+.hero > h1 {
+  margin: 0 0 0.75rem;
+  font-size: 1.5rem;
+}
+
+.hero-card {
+  background-color: rgba(230, 230, 230, 0.82);
+  color: #000000;
+  padding: 1rem 1.1rem 1.2rem;
+  max-width: 260px;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  z-index: 2;
+}
+
+.hero-card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.hero-features {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding-left: 0;
+  font-size: 0.9rem;
+}
+
+.hero-features li::before {
+  content: "• ";
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background-color: #13c6dd;
+  color: #042027;
+  font-weight: 600;
+  border-radius: 0;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #0fb0c4;
+  text-decoration: none;
+}
+
+.hero-image {
+  text-align: right;
+  margin-top: 3.5rem;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Sections under hero */
+
+.content-sections {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.content-sections h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+.reviews ul {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 0;
+}
+
+.reviews li {
+  margin-bottom: 0.4rem;
+}
+
+.upgrades-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.upgrade {
+  text-align: center;
+  padding: 0.25rem 0.35rem 0.35rem;
+}
+
+.upgrade img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  background-color: var(--color-primary);
+  padding: 0.4rem 0.4rem 0.3rem;
+  margin-bottom: 0.35rem;
+}
+
+.upgrade a {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Footer */
+
+footer {
+  margin-top: auto;
+  padding: 0.75rem 1.25rem 1.25rem;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.copyright {
+  margin: 0;
+}
+
+/* Larger screens (tablets and up, 768px+) - match desktop layout */
+
+@media screen and (min-width: 768px) {
+  body {
+    background-color: #ffffff;
+    background-image: url("/images/site/checkerboard.jpg");
+    background-repeat: repeat;
+    background-size: 120px 120px;
+  }
+  #top-header {
+    padding-top: 1.5rem;
+  }
+
+  nav ul {
+    padding-inline: 0;
+  }
+
+  #wrapper {
+    margin: 2.5rem auto 3rem;
+    border: 4px solid var(--color-border);
+  }
+
+  main {
+    padding: 1.75rem 2rem 2.25rem;
+  }
+
+  .hero > h1 {
+    font-size: 1.8rem;
+  }
+
+  .content-sections {
+    margin-top: 2.25rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2.25rem;
+  }
+
+  /* On large screens, put upgrades on the left, reviews on the right */
+  .upgrades {
+    order: 1;
+  }
+
+  .reviews {
+    order: 2;
+  }
+}
