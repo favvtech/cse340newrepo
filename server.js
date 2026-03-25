@@ -76,7 +76,10 @@ app.use(async (req, res, next) => {
  * Values from .env (environment) file
  *************************/
 const port = process.env.PORT || 5500
-const host = process.env.HOST || "localhost"
+const host =
+  process.env.NODE_ENV === "development"
+    ? process.env.HOST || "localhost"
+    : "0.0.0.0"
 
 /* ***********************
  * Log statement to confirm server operation
