@@ -39,7 +39,14 @@ app.use("/inv", inventoryRoute)
  * Place after all other middleware
  *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
+  let nav = ""
+  try {
+    nav = await utilities.getNav()
+  } catch (navErr) {
+    console.error("Could not build nav in error handler:", navErr.message)
+    nav = '<ul><li><a href="/" title="Home page">Home</a></li></ul>'
+  }
+
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
 
   let status = err.statusCode || err.status || 500
