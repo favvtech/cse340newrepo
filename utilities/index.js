@@ -74,8 +74,10 @@ Util.buildClassificationGrid = async function(data){
       grid += "</li>"
     })
     grid += "</ul>"
-  } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+  } else {
+    // Defensive: ensure `grid` is initialized even if we ever call this
+    // with an empty array (normally handled as a 404 by the controller).
+    grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
 }
