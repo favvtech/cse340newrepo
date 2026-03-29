@@ -54,6 +54,82 @@ main {
   padding: 1.5rem 1.25rem 2rem;
 }
 
+/* Account (login) */
+
+.account-form {
+  max-width: 420px;
+  margin: 1rem auto 0;
+  padding: 1rem;
+  border: 1px solid #ccecf2;
+  background-color: #f0f9fb;
+  border-radius: 10px;
+}
+
+.account-form fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.account-form label {
+  font-weight: 600;
+}
+
+.account-form input {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #b7c7cc;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.account-form input:required:invalid,
+.account-form input:focus:invalid {
+  border-color: #b00020;
+  box-shadow: 0 0 0 3px rgba(176, 0, 32, 0.18);
+}
+
+.account-form input:required:valid {
+  border-color: #1b7f3a;
+}
+
+.account-form input:focus {
+  outline: 3px solid rgba(0, 191, 230, 0.35);
+  outline-offset: 2px;
+}
+
+.account-form button {
+  justify-self: center;
+  margin-top: 0.25rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 2px solid var(--color-primary-dark);
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.account-form button:hover,
+.account-form button:focus {
+  background-color: #d9f4fa;
+}
+
+.account-form__hint {
+  margin: 0.75rem 0 0;
+  text-align: center;
+}
+
+.account-form__rules {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 0.9rem;
+  color: #333333;
+  line-height: 1.4;
+}
+
 /* Header */
 
 #top-header {
