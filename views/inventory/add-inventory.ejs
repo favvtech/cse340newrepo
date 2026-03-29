@@ -1,0 +1,65 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <% }) %>
+  </ul>
+<% } %>
+
+<form class="inv-form account-form inv-form--wide" action="/inv/add-inventory" method="post">
+  <fieldset>
+    <label for="classificationList">Classification</label>
+    <%- classificationList %>
+
+    <label for="inv_make">Make</label>
+    <input type="text" name="inv_make" id="inv_make" required value="<%= locals.inv_make %>">
+
+    <label for="inv_model">Model</label>
+    <input type="text" name="inv_model" id="inv_model" required value="<%= locals.inv_model %>">
+
+    <label for="inv_year">Year</label>
+    <input
+      type="text"
+      name="inv_year"
+      id="inv_year"
+      required
+      maxlength="4"
+      pattern="^\d{4}$"
+      inputmode="numeric"
+      value="<%= locals.inv_year %>">
+
+    <label for="inv_description">Description</label>
+    <textarea name="inv_description" id="inv_description" required rows="4"><%= locals.inv_description %></textarea>
+
+    <label for="inv_image">Image path</label>
+    <input type="text" name="inv_image" id="inv_image" required value="<%= locals.inv_image %>">
+
+    <label for="inv_thumbnail">Thumbnail path</label>
+    <input type="text" name="inv_thumbnail" id="inv_thumbnail" required value="<%= locals.inv_thumbnail %>">
+
+    <p class="account-form__rules">
+      Use the default “no image” paths below, or point to images under <code>/images/</code> (for example <code>/images/vehicles/your-car.jpg</code>).
+    </p>
+
+    <label for="inv_price">Price (USD)</label>
+    <input type="number" name="inv_price" id="inv_price" required min="0" step="1" value="<%= locals.inv_price %>">
+
+    <label for="inv_miles">Mileage</label>
+    <input type="number" name="inv_miles" id="inv_miles" required min="0" step="1" value="<%= locals.inv_miles %>">
+
+    <label for="inv_color">Color</label>
+    <input type="text" name="inv_color" id="inv_color" required value="<%= locals.inv_color %>">
+
+    <button type="submit">Add Vehicle</button>
+  </fieldset>
+</form>
+
+<p class="inv-form__back">
+  <a href="/inv/">Back to management</a>
+</p>

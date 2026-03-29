@@ -4,7 +4,15 @@
 
 <%- messages() %>
 
-<form class="account-form" action="#" method="post">
+<% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <% }) %>
+  </ul>
+<% } %>
+
+<form id="loginForm" class="account-form" action="/account/login" method="post">
   <fieldset>
     <label for="account_email">Email:</label>
     <input
@@ -12,7 +20,8 @@
       name="account_email"
       type="email"
       required
-      placeholder="Enter a valid email address">
+      placeholder="Enter a valid email address"
+      value="<%= locals.account_email %>">
 
     <label for="account_password">Password:</label>
     <input

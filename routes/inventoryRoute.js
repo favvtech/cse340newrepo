@@ -3,7 +3,43 @@ const express = require("express")
 const router = new express.Router()
 const invController = require("../controllers/invController")
 const utilities = require("../utilities/")
+const invValidate = require("../utilities/inventory-validation")
 
+/* ***************************
+ *  Management & add flows (must be before /type/:id)
+ * ************************** */
+router.get(
+  "/",
+  utilities.handleErrors(invController.buildManagement)
+)
+
+router.get(
+  "/add-classification",
+  utilities.handleErrors(invController.buildAddClassification)
+)
+
+router.post(
+  "/add-classification",
+  invValidate.classificationRules(),
+  invValidate.checkClassificationData,
+  utilities.handleErrors(invController.registerClassification)
+)
+
+router.get(
+  "/add-inventory",
+  utilities.handleErrors(invController.buildAddInventory)
+)
+
+router.post(
+  "/add-inventory",
+  invValidate.inventoryRules(),
+  invValidate.checkInventoryData,
+  utilities.handleErrors(invController.registerInventory)
+)
+
+/* ***************************
+ *  Public inventory views
+ * ************************** */
 router.get(
   "/type/:classificationId",
   utilities.handleErrors(invController.buildByClassificationId)

@@ -34,6 +34,43 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* **************************************
+ * Build classification <select> list (sticky selection)
+ * ************************************ */
+Util.buildClassificationList = async function (classification_id = null) {
+  let data
+  try {
+    data = await invModel.getClassifications()
+  } catch (err) {
+    console.error("buildClassificationList:", err.message)
+    return (
+      '<select name="classification_id" id="classificationList" required disabled>' +
+      "<option value=''>Unable to load classifications</option></select>"
+    )
+  }
+  if (!data || !data.rows) {
+    return (
+      '<select name="classification_id" id="classificationList" required disabled>' +
+      "<option value=''>No classifications found</option></select>"
+    )
+  }
+  let classificationList =
+    '<select name="classification_id" id="classificationList" required>'
+  classificationList += "<option value=''>Choose a Classification</option>"
+  data.rows.forEach((row) => {
+    classificationList += '<option value="' + row.classification_id + '"'
+    if (
+      classification_id != null &&
+      String(row.classification_id) === String(classification_id)
+    ) {
+      classificationList += " selected "
+    }
+    classificationList += ">" + row.classification_name + "</option>"
+  })
+  classificationList += "</select>"
+  return classificationList
+}
+
+/* **************************************
 * Build the classification view HTML
 * ************************************ */
 Util.buildClassificationGrid = async function(data){

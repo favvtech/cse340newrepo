@@ -1,0 +1,38 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <% }) %>
+  </ul>
+<% } %>
+
+<form class="inv-form account-form" action="/inv/add-classification" method="post">
+  <fieldset>
+    <label for="classificationName">Classification name</label>
+    <input
+      type="text"
+      name="classification_name"
+      id="classificationName"
+      required
+      pattern="^[A-Za-z0-9]+$"
+      title="Letters and numbers only — no spaces or special characters."
+      value="<%= locals.classification_name %>"
+      autocomplete="off">
+
+    <p class="account-form__rules">
+      The name cannot contain spaces or special characters (letters and numbers only).
+    </p>
+
+    <button type="submit">Add Classification</button>
+  </fieldset>
+</form>
+
+<p class="inv-form__back">
+  <a href="/inv/">Back to management</a>
+</p>

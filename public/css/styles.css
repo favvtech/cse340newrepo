@@ -619,3 +619,59 @@ footer {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+/* Inventory management (Tasks 1–3) */
+
+.inv-management__intro {
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+.inv-management__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 420px;
+}
+
+.inv-management__links a {
+  display: block;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccecf2;
+  background-color: #f0f9fb;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+.inv-management__links a:hover,
+.inv-management__links a:focus {
+  background-color: #d9f4fa;
+  text-decoration: none;
+}
+
+.inv-form--wide {
+  max-width: 520px;
+}
+
+.inv-form textarea,
+.inv-form select {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #b7c7cc;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.inv-form textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.inv-form__back {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}

@@ -14,11 +14,11 @@
 
 <form class="account-form" action="/account/register" method="post">
   <fieldset>
-    <label for="account_firstname">First name:</label>
-    <input id="account_firstname" name="account_firstname" type="text" required>
+    <label for="accountFirstname">First name:</label>
+    <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
 
-    <label for="account_lastname">Last name:</label>
-    <input id="account_lastname" name="account_lastname" type="text" required>
+    <label for="accountLastname">Last name:</label>
+    <input type="text" name="account_lastname" id="accountLastname" required value="<%= locals.account_lastname %>">
 
     <label for="account_email">Email address:</label>
     <input
@@ -26,7 +26,8 @@
       name="account_email"
       type="email"
       required
-      placeholder="Enter a valid email address">
+      placeholder="Enter a valid email address"
+      value="<%= locals.account_email %>">
 
     <label for="account_password">Password:</label>
     <input

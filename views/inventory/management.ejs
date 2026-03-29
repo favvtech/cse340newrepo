@@ -1,0 +1,18 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<%- messages() %>
+
+<p class="inv-management__intro">
+  Choose an option below to manage vehicle classifications and inventory.
+</p>
+
+<ul class="inv-management__links">
+  <li>
+    <a href="/inv/add-classification">Add New Classification</a>
+  </li>
+  <li>
+    <a href="/inv/add-inventory">Add New Inventory</a>
+  </li>
+</ul>
