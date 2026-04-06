@@ -184,6 +184,10 @@ Util.handleErrors = (fn) => (req, res, next) =>
  * Middleware to check token validity
  **************************************** */
 Util.checkJWTToken = (req, res, next) => {
+  // Always define locals used by header/account views.
+  res.locals.loggedin = 0
+  res.locals.accountData = null
+
   if (req.cookies.jwt) {
     jwt.verify(
       req.cookies.jwt,
@@ -214,6 +218,25 @@ Util.checkLogin = (req, res, next) => {
     req.flash("notice", "Please log in.")
     return res.redirect("/account/login")
   }
+}
+
+/* ****************************************
+ *  Check account type for inventory management access
+ * ************************************ */
+Util.checkAccountType = (req, res, next) => {
+  const accountData = res.locals.accountData
+  if (
+    accountData &&
+    (accountData.account_type === "Employee" || accountData.account_type === "Admin")
+  ) {
+    return next()
+  }
+  req.flash("notice", "You must be logged in as Employee or Admin.")
+  return res.status(403).render("account/login", {
+    title: "Login",
+    nav: "",
+    errors: null,
+  })
 }
 
 module.exports = Util

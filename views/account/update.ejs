@@ -1,0 +1,48 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <% }) %>
+  </ul>
+<% } %>
+
+<form class="account-form" action="/account/update" method="post">
+  <fieldset>
+    <label for="account_firstname">First Name:</label>
+    <input id="account_firstname" name="account_firstname" type="text" required value="<%= locals.account_firstname %>">
+
+    <label for="account_lastname">Last Name:</label>
+    <input id="account_lastname" name="account_lastname" type="text" required value="<%= locals.account_lastname %>">
+
+    <label for="account_email">Email:</label>
+    <input id="account_email" name="account_email" type="email" required value="<%= locals.account_email %>">
+
+    <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+    <button type="submit">Update Account</button>
+  </fieldset>
+</form>
+
+<form class="account-form" action="/account/update-password" method="post">
+  <fieldset>
+    <label for="account_password">New Password:</label>
+    <input
+      id="account_password"
+      name="account_password"
+      type="password"
+      required
+      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+
+    <p class="account-form__rules">
+      Entering a new password changes your current password. It must be at least 12 characters and include 1 uppercase letter, 1 number, and 1 special character.
+    </p>
+
+    <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+    <button type="submit">Change Password</button>
+  </fieldset>
+</form>

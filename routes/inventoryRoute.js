@@ -10,16 +10,19 @@ const invValidate = require("../utilities/inventory-validation")
  * ************************** */
 router.get(
   "/",
+  utilities.checkAccountType,
   utilities.handleErrors(invController.buildManagement)
 )
 
 router.get(
   "/add-classification",
+  utilities.checkAccountType,
   utilities.handleErrors(invController.buildAddClassification)
 )
 
 router.post(
   "/add-classification",
+  utilities.checkAccountType,
   invValidate.classificationRules(),
   invValidate.checkClassificationData,
   utilities.handleErrors(invController.registerClassification)
@@ -27,11 +30,13 @@ router.post(
 
 router.get(
   "/add-inventory",
+  utilities.checkAccountType,
   utilities.handleErrors(invController.buildAddInventory)
 )
 
 router.post(
   "/add-inventory",
+  utilities.checkAccountType,
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.registerInventory)
@@ -42,6 +47,7 @@ router.post(
  * ************************** */
 router.post(
   "/update/",
+  utilities.checkAccountType,
   invValidate.inventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
@@ -57,7 +63,26 @@ router.get(
  * ************************** */
 router.get(
   "/edit/:inv_id",
+  utilities.checkAccountType,
   utilities.handleErrors(invController.editInventoryView)
+)
+
+/* ***************************
+ *  Delete inventory view route
+ * ************************** */
+router.get(
+  "/delete/:inv_id",
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.buildDeleteView)
+)
+
+/* ***************************
+ *  Delete inventory data route
+ * ************************** */
+router.post(
+  "/delete/",
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.deleteInventoryItem)
 )
 
 /* ***************************

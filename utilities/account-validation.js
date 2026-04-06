@@ -111,5 +111,87 @@ validate.checkLoginData = async (req, res, next) => {
   next()
 }
 
+/* **********************************
+ *  Account update validation rules
+ * ********************************* */
+validate.accountUpdateRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Please provide a first name."),
+    body("account_lastname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Please provide a last name."),
+    body("account_email")
+      .trim()
+      .normalizeEmail()
+      .isEmail()
+      .withMessage("A valid email is required."),
+  ]
+}
+
+/* ******************************
+ * Check account update data and return errors or continue
+ * ***************************** */
+validate.checkAccountUpdateData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    const nav = await utilities.getNav()
+    res.render("account/update", {
+      title: "Update Account",
+      nav,
+      errors,
+      account_id: req.body.account_id,
+      account_firstname: req.body.account_firstname,
+      account_lastname: req.body.account_lastname,
+      account_email: req.body.account_email,
+    })
+    return
+  }
+  next()
+}
+
+/* **********************************
+ *  Password update validation rules
+ * ********************************* */
+validate.passwordRules = () => {
+  return [
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ]
+}
+
+validate.checkPasswordData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    const nav = await utilities.getNav()
+    const accountData = await accountModel.getAccountById(req.body.account_id)
+    res.render("account/update", {
+      title: "Update Account",
+      nav,
+      errors,
+      account_id: req.body.account_id,
+      account_firstname: accountData ? accountData.account_firstname : "",
+      account_lastname: accountData ? accountData.account_lastname : "",
+      account_email: accountData ? accountData.account_email : "",
+    })
+    return
+  }
+  next()
+}
+
 module.exports = validate
 
