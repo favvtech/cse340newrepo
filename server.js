@@ -5,6 +5,7 @@
 /* ***********************
  * Require Statements
  *************************/
+const cookieParser = require("cookie-parser")
 const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
@@ -46,6 +47,8 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 // index route
 app.get("/", utilities.handleErrors(baseController.buildHome))

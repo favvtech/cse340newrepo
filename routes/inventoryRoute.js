@@ -38,6 +38,29 @@ router.post(
 )
 
 /* ***************************
+ *  Update inventory data route
+ * ************************** */
+router.post(
+  "/update/",
+  invValidate.inventoryRules(),
+  invValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+)
+
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+)
+
+/* ***************************
+ *  Edit inventory view route
+ * ************************** */
+router.get(
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.editInventoryView)
+)
+
+/* ***************************
  *  Public inventory views
  * ************************** */
 router.get(

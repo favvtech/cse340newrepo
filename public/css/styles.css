@@ -675,3 +675,128 @@ footer {
   margin-top: 1rem;
   font-size: 0.95rem;
 }
+
+/* Inventory management — classification picker + dynamic inventory table */
+
+ul.inv-management__links + h2 {
+  margin: 1.75rem 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-header-text);
+}
+
+ul.inv-management__links + h2 + p {
+  margin: 0 0 0.75rem;
+  max-width: 36rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+#classificationList {
+  display: block;
+  max-width: 28rem;
+  margin: 0 0 1.25rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #b7c7cc;
+  border-radius: 8px;
+  font: inherit;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+#classificationList:focus {
+  outline: 3px solid rgba(0, 191, 230, 0.35);
+  outline-offset: 2px;
+  border-color: var(--color-primary-dark);
+}
+
+#inventoryDisplay {
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 0 1.5rem;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+  border: 1px solid #ccecf2;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+#inventoryDisplay thead {
+  background: linear-gradient(180deg, #e8f7fb 0%, #d9f0f6 100%);
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid #e0edf1;
+}
+
+#inventoryDisplay thead tr:first-child th:first-child {
+  min-width: 12rem;
+}
+
+#inventoryDisplay th {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #333;
+}
+
+#inventoryDisplay tbody tr:nth-child(even) {
+  background-color: #fafcfd;
+}
+
+#inventoryDisplay tbody tr:hover {
+  background-color: #f0f9fb;
+}
+
+#inventoryDisplay tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#inventoryDisplay td a {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+#inventoryDisplay td a[href*="/edit"] {
+  color: #0a6b4d;
+}
+
+#inventoryDisplay td a[href*="/edit"]:hover,
+#inventoryDisplay td a[href*="/edit"]:focus {
+  background-color: rgba(10, 107, 77, 0.12);
+  text-decoration: underline;
+}
+
+#inventoryDisplay td a[href*="/delete"] {
+  color: #9a1f1f;
+}
+
+#inventoryDisplay td a[href*="/delete"]:hover,
+#inventoryDisplay td a[href*="/delete"]:focus {
+  background-color: rgba(154, 31, 31, 0.1);
+  text-decoration: underline;
+}
+
+main noscript {
+  display: block;
+  margin: 0.5rem 0 1rem;
+  padding: 0.65rem 0.85rem;
+  max-width: 52rem;
+  font-size: 0.9rem;
+  color: #5c3b00;
+  background-color: #fff8e6;
+  border: 1px solid #f0d78c;
+  border-radius: 6px;
+}
