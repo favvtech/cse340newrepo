@@ -188,21 +188,33 @@ Util.checkJWTToken = (req, res, next) => {
   res.locals.loggedin = 0
   res.locals.accountData = null
 
+  if (!process.env.ACCESS_TOKEN_SECRET) {
+    if (req.cookies && req.cookies.jwt) {
+      res.clearCookie("jwt")
+    }
+    return next()
+  }
+
   if (req.cookies.jwt) {
-    jwt.verify(
-      req.cookies.jwt,
-      process.env.ACCESS_TOKEN_SECRET,
-      function (err, accountData) {
-        if (err) {
-          req.flash("notice", "Please log in")
-          res.clearCookie("jwt")
-          return res.redirect("/account/login")
+    try {
+      jwt.verify(
+        req.cookies.jwt,
+        process.env.ACCESS_TOKEN_SECRET,
+        function (err, accountData) {
+          if (err) {
+            req.flash("notice", "Please log in")
+            res.clearCookie("jwt")
+            return res.redirect("/account/login")
+          }
+          res.locals.accountData = accountData
+          res.locals.loggedin = 1
+          next()
         }
-        res.locals.accountData = accountData
-        res.locals.loggedin = 1
-        next()
-      }
-    )
+      )
+    } catch (e) {
+      res.clearCookie("jwt")
+      return next()
+    }
   } else {
     next()
   }
