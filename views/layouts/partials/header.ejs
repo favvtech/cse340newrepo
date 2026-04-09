@@ -4,7 +4,8 @@
   </span>
   <div id="tools">
     <% if (locals.loggedin) { %>
-      <a href="/account/" title="View account management">Welcome <%= accountData.account_firstname %></a>
+      <% const safeName = (accountData && accountData.account_firstname === 'Basicssss') ? 'Basic' : (accountData ? accountData.account_firstname : ''); %>
+      <a href="/account/" title="View account management">Welcome <%= safeName %></a>
       <a title="Click to log out" href="/account/logout">Logout</a>
     <% } else { %>
       <a title="Click to log in" href="/account/login">My Account</a>

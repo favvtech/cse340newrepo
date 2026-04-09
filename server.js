@@ -17,6 +17,7 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
+const favoritesRoute = require("./routes/favoritesRoute")
 const utilities = require("./utilities/")
 
  
@@ -64,6 +65,9 @@ app.use("/inv", inventoryRoute)
 
 // Account routes
 app.use("/account", accountRoute)
+
+// Favorites routes (Additional Enhancement)
+app.use("/account/favorites", favoritesRoute)
 
 /* ***********************
  * Express Error Handler

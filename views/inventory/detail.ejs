@@ -2,4 +2,17 @@
 <h1 class="vehicle-detail-page-title"><%= title %></h1>
 <% } %>
 
+<% if (locals.loggedin) { %>
+  <form class="fav-action" action="<%= isFavorite ? '/account/favorites/remove' : '/account/favorites/add' %>" method="post">
+    <input type="hidden" name="inv_id" value="<%= locals.inv_id %>">
+    <% if (!isFavorite) { %>
+      <label class="fav-action__label" for="fav_note">Optional note</label>
+      <input id="fav_note" name="note" type="text" maxlength="200" placeholder="Example: Great for commuting">
+    <% } %>
+    <button type="submit"><%= isFavorite ? 'Saved' : 'Save to Favorites' %></button>
+  </form>
+<% } else { %>
+  <p><a href="/account/login">Log in</a> to save this vehicle to your favorites.</p>
+<% } %>
+
 <%- detail %>

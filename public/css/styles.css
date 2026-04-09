@@ -130,6 +130,65 @@ main {
   line-height: 1.4;
 }
 
+/* Favorites enhancement */
+
+.fav-action {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 520px;
+  padding: 0.85rem 1rem;
+  border: 1px solid #ccecf2;
+  background-color: #f0f9fb;
+  border-radius: 10px;
+  margin: 0 0 1.25rem;
+}
+
+.fav-action__label {
+  font-weight: 600;
+}
+
+.fav-action input[type="text"] {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #b7c7cc;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.fav-action button {
+  justify-self: start;
+}
+
+.fav-action[action*="/remove"] button {
+  background-color: #e8f7fb;
+  border-color: #0088aa;
+}
+
+#favoritesTable {
+  width: 100%;
+  max-width: 52rem;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border: 1px solid #ccecf2;
+}
+
+#favoritesTable th,
+#favoritesTable td {
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid #e0edf1;
+  vertical-align: top;
+}
+
+.fav-note-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+}
+
+.fav-note-form input[type="text"] {
+  min-width: 12rem;
+}
+
 /* Header */
 
 #top-header {

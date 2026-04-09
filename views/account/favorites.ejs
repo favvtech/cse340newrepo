@@ -1,0 +1,55 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <% }) %>
+  </ul>
+<% } %>
+
+<% if (!favorites || favorites.length === 0) { %>
+  <p>You have no saved favorites yet. Visit a vehicle detail page to save one.</p>
+<% } else { %>
+  <table id="favoritesTable">
+    <thead>
+      <tr>
+        <th>Vehicle</th>
+        <th>Note</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% favorites.forEach(f => { %>
+        <tr>
+          <td>
+            <a href="/inv/detail/<%= f.inv_id %>"><%= f.inv_year %> <%= f.inv_make %> <%= f.inv_model %></a>
+          </td>
+          <td>
+            <form action="/account/favorites/note" method="post" class="fav-note-form">
+              <input type="hidden" name="inv_id" value="<%= f.inv_id %>">
+              <input
+                type="text"
+                name="note"
+                maxlength="200"
+                value="<%= f.note || '' %>"
+                aria-label="Favorite note for <%= f.inv_make %> <%= f.inv_model %>">
+              <button type="submit">Save Note</button>
+            </form>
+          </td>
+          <td>
+            <form action="/account/favorites/remove" method="post">
+              <input type="hidden" name="inv_id" value="<%= f.inv_id %>">
+              <button type="submit">Remove</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>
+

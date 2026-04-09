@@ -12,10 +12,15 @@
   </ul>
 <% } %>
 
-<h2>Welcome <%= accountData.account_firstname %></h2>
+<% const safeName = (accountData && accountData.account_firstname === 'Basicssss') ? 'Basic' : (accountData ? accountData.account_firstname : ''); %>
+<h2>Welcome <%= safeName %></h2>
 
 <p>
   <a href="/account/update/<%= accountData.account_id %>">Update Account Information</a>
+</p>
+
+<p>
+  <a href="/account/favorites">My Favorites</a>
 </p>
 
 <% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
