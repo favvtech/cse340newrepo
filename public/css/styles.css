@@ -157,11 +157,25 @@ main {
 
 .fav-action button {
   justify-self: start;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 2px solid var(--color-primary-dark);
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.fav-action button:hover,
+.fav-action button:focus {
+  background-color: #d9f4fa;
 }
 
 .fav-action[action*="/remove"] button {
   background-color: #e8f7fb;
   border-color: #0088aa;
+  color: #000000;
 }
 
 #favoritesTable {
